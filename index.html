@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Verbes EN">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Révision Verbes Irréguliers</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%2332B8C6' width='192' height='192'/><text x='50%' y='50%' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'>EN</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%2332B8C6' width='192' height='192' rx='45'/><text x='50%' y='50%' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle'>EN</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Révision Verbes Irréguliers</h1>
+
+        <div class="card">
+            <h2>Configuration</h2>
+            <div class="config-grid-3">
+                <div class="form-group">
+                    <label class="form-label">Verbe de départ</label>
+                    <select id="startVerbDropdown"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Verbe de fin</label>
+                    <select id="endVerbDropdown"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nombre de questions</label>
+                    <input type="number" id="numQuestionsInput" min="1" max="100" value="10">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn-primary" id="loadVerbsBtn">Charger les verbes</button>
+                <button class="btn-secondary" id="manageVerbsBtn">Gérer la liste</button>
+            </div>
+            
+            <div class="info-box" id="verbsInfo">
+                <strong>Verbes disponibles :</strong> <span id="totalVerbsCount">0</span><br>
+                <strong>Verbes sélectionnés :</strong> <span id="selectedVerbsCount">0</span>
+            </div>
+
+            <div id="verbsEditorPanel" class="card">
+                <h2>Sélectionner les verbes</h2>
+                
+                <div class="selection-controls">
+                    <button class="btn-secondary btn-sm" id="selectAllBtn">Tout sélectionner</button>
+                    <button class="btn-secondary btn-sm" id="deselectAllBtn">Tout désélectionner</button>
+                    <button class="btn-secondary btn-sm" id="toggleAddVerbBtn">➕ Ajouter un verbe</button>
+                </div>
+
+                <div id="addVerbPanel">
+                    <h3 style="margin: 0 0 12px 0; font-size: 0.95rem; color: var(--color-teal-300);">Nouveau verbe</h3>
+                    <div class="add-verb-grid">
+                        <div class="form-group">
+                            <label class="form-label">Base (infinitif)</label>
+                            <input type="text" id="newVerbBase" placeholder="ex: go">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Prétérit</label>
+                            <input type="text" id="newVerbPreterit" placeholder="ex: went">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Participe passé</label>
+                            <input type="text" id="newVerbPastParticiple" placeholder="ex: gone">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Traduction</label>
+                            <input type="text" id="newVerbTranslation" placeholder="ex: aller">
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-secondary btn-sm" id="cancelAddVerbBtn">Annuler</button>
+                        <button class="btn-primary btn-sm" id="addVerbBtn">Ajouter</button>
+                    </div>
+                </div>
+
+                <div id="verbsList"></div>
+
+                <div class="editor-actions">
+                    <button class="btn-secondary" id="cancelEditVerbsBtn">Annuler</button>
+                    <button class="btn-primary" id="saveVerbsBtn">Enregistrer la sélection</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="exerciseSection" class="card" style="display: none;">
+            <div class="progress" id="progressCounter"></div>
+            <div class="question">
+                <div class="question-text" id="questionText"></div>
+            </div>
+
+            <div class="forms-grid" id="formsGrid"></div>
+
+            <div id="feedback" class="feedback"></div>
+
+            <div class="button-group">
+                <button class="btn-primary" id="validateBtn">Valider</button>
+                <button class="btn-secondary" id="skipBtn">Je ne sais pas</button>
+            </div>
+        </div>
+
+        <div id="scoreScreen" class="card score-screen">
+            <div style="font-size: 1.2rem; margin-bottom: 20px; color: var(--color-text-primary);">Score Final</div>
+            <div class="score-value" id="scoreValue"></div>
+            <div id="scorePercentage" style="font-size: 1.1rem; color: var(--color-text-secondary); margin: 10px 0;"></div>
+            <div class="score-message" id="scoreMessage"></div>
+            <button class="btn-primary" id="restartBtn" style="margin-top: 20px;">Recommencer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Enregistrement du Service Worker pour fonctionnalité offline
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then((registration) => {
+                    console.log('Service Worker enregistré:', registration);
+                })
+                .catch((error) => {
+                    console.log('Erreur Service Worker:', error);
+                });
+        }
+    </script>
+</body>
+</html>
