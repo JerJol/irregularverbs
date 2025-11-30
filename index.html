@@ -410,7 +410,7 @@ button {
             
             <div class="info-box" id="verbsInfo">
                 <strong>Verbes disponibles :</strong> <span id="totalVerbsCount">0</span><br>
-                <strong>Verbes sélectionnés :</strong> <span id="selectedVerbsCount">0</span>
+                <strong>Verbes sélectionnés dans la plage :</strong> <span id="selectedVerbsCount">0</span>
             </div>
 
             <div id="verbsEditorPanel" class="card">
@@ -467,7 +467,7 @@ button {
 
             <div id="feedback" class="feedback"></div>
 
-            <div class="button-group">
+            <div class="button-group" id="exerciseButtonGroup">
                 <button class="btn-primary" id="validateBtn">Valider</button>
                 <button class="btn-secondary" id="skipBtn">Je ne sais pas</button>
             </div>
@@ -584,10 +584,37 @@ function initializeSelectedVerbs() {
 
 function updateVerbsInfo() {
   document.getElementById('totalVerbsCount').textContent = verbsSorted.length;
+  updateSelectedVerbsInRange();
 }
 
-function updateSelectedVerbsCount() {
-  document.getElementById('selectedVerbsCount').textContent = selectedVerbs.size;
+function updateSelectedVerbsInRange() {
+  const startVerbValue = document.getElementById('startVerbDropdown').value;
+  const endVerbValue = document.getElementById('endVerbDropdown').value;
+  
+  if (!startVerbValue || !endVerbValue) {
+    document.getElementById('selectedVerbsCount').textContent = '0';
+    return;
+  }
+
+  const startIdx = verbsSorted.findIndex(v => v.base === startVerbValue);
+  const endIdx = verbsSorted.findIndex(v => v.base === endVerbValue);
+  
+  if (startIdx === -1 || endIdx === -1) {
+    document.getElementById('selectedVerbsCount').textContent = '0';
+    return;
+  }
+
+  const minIdx = Math.min(startIdx, endIdx);
+  const maxIdx = Math.max(startIdx, endIdx);
+  
+  let count = 0;
+  for (let i = minIdx; i <= maxIdx; i++) {
+    if (selectedVerbs.has(verbsSorted[i].base)) {
+      count++;
+    }
+  }
+  
+  document.getElementById('selectedVerbsCount').textContent = count;
 }
 
 function renderVerbsList() {
@@ -606,7 +633,7 @@ function renderVerbsList() {
       } else {
         selectedVerbs.delete(verb.base);
       }
-      updateSelectedVerbsCount();
+      updateSelectedVerbsInRange();
     });
     const label = document.createElement('label');
     label.htmlFor = `verb-${verb.base}`;
@@ -622,18 +649,30 @@ function populateVerbDropdowns() {
   const endDropdown = document.getElementById('endVerbDropdown');
   startDropdown.innerHTML = '';
   endDropdown.innerHTML = '';
-  verbsSorted.forEach(v => {
+  
+  const selectedVerbsList = Array.from(selectedVerbs)
+    .map(base => verbsSorted.find(v => v.base === base))
+    .filter(v => v !== undefined)
+    .sort((a, b) => a.base.localeCompare(b.base));
+
+  selectedVerbsList.forEach(v => {
     const opt1 = document.createElement('option');
     opt1.value = v.base;
     opt1.textContent = `${v.base} (${v.translation})`;
     startDropdown.appendChild(opt1);
+
     const opt2 = document.createElement('option');
     opt2.value = v.base;
     opt2.textContent = `${v.base} (${v.translation})`;
     endDropdown.appendChild(opt2);
   });
-  startDropdown.value = 'have';
-  endDropdown.value = 'put';
+
+  if (selectedVerbsList.length > 0) {
+    startDropdown.value = selectedVerbsList[0].base;
+    endDropdown.value = selectedVerbsList[selectedVerbsList.length - 1].base;
+  }
+  
+  updateSelectedVerbsInRange();
 }
 
 function clearAddVerbForm() {
@@ -661,7 +700,6 @@ function addNewVerb() {
   verbsSorted.sort((a, b) => a.base.localeCompare(b.base));
   selectedVerbs.add(base);
   updateVerbsInfo();
-  updateSelectedVerbsCount();
   populateVerbDropdowns();
   renderVerbsList();
   clearAddVerbForm();
@@ -670,23 +708,41 @@ function addNewVerb() {
 }
 
 function loadVerbs() {
+  const startVerbValue = document.getElementById('startVerbDropdown').value;
+  const endVerbValue = document.getElementById('endVerbDropdown').value;
   const numQuestions = parseInt(document.getElementById('numQuestionsInput').value);
-  const selectedVerbsList = Array.from(selectedVerbs)
-    .map(base => verbsSorted.find(v => v.base === base))
-    .filter(v => v !== undefined);
-  if (selectedVerbsList.length === 0) {
-    alert('Veuillez sélectionner au moins un verbe');
+
+  const startIdx = verbsSorted.findIndex(v => v.base === startVerbValue);
+  const endIdx = verbsSorted.findIndex(v => v.base === endVerbValue);
+
+  if (startIdx === -1 || endIdx === -1) {
+    alert('Verbes de départ ou de fin non valides');
     return;
   }
-  const selectedCount = selectedVerbsList.length;
-  if (numQuestions > selectedCount) {
-    alert(`Vous avez sélectionné ${selectedCount} verbes mais demandé ${numQuestions} questions.\nUtilisation de ${selectedCount} questions.`);
-    currentVerbs = selectedVerbsList;
-  } else if (numQuestions < selectedCount) {
-    currentVerbs = selectedVerbsList.sort(() => Math.random() - 0.5).slice(0, numQuestions);
-  } else {
-    currentVerbs = selectedVerbsList;
+
+  let rangeVerbs = [];
+  const minIdx = Math.min(startIdx, endIdx);
+  const maxIdx = Math.max(startIdx, endIdx);
+  
+  for (let i = minIdx; i <= maxIdx; i++) {
+    if (selectedVerbs.has(verbsSorted[i].base)) {
+      rangeVerbs.push(verbsSorted[i]);
+    }
   }
+
+  if (rangeVerbs.length === 0) {
+    alert('Aucun verbe sélectionné dans cette plage');
+    return;
+  }
+
+  if (numQuestions > rangeVerbs.length) {
+    currentVerbs = rangeVerbs;
+  } else if (numQuestions < rangeVerbs.length) {
+    currentVerbs = rangeVerbs.sort(() => Math.random() - 0.5).slice(0, numQuestions);
+  } else {
+    currentVerbs = rangeVerbs;
+  }
+
   document.getElementById('exerciseSection').style.display = 'block';
   document.getElementById('scoreScreen').classList.remove('show');
   currentVerbIndex = 0;
@@ -776,14 +832,20 @@ function validateAnswer() {
   }
   document.getElementById('validateBtn').style.display = 'none';
   document.getElementById('skipBtn').style.display = 'none';
+  const buttonGroup = document.getElementById('exerciseButtonGroup');
   const nextBtn = document.createElement('button');
   nextBtn.className = 'btn-primary';
+  nextBtn.id = 'nextVerbBtn';
   nextBtn.textContent = 'Verbe suivant';
   nextBtn.onclick = () => {
     currentVerbIndex++;
     displayQuestion();
   };
-  document.getElementById('feedback').parentNode.insertBefore(nextBtn, document.getElementById('feedback').nextSibling);
+  const existingNextBtn = document.getElementById('nextVerbBtn');
+  if (existingNextBtn) {
+    existingNextBtn.remove();
+  }
+  buttonGroup.appendChild(nextBtn);
 }
 
 function displayCorrection() {
@@ -808,14 +870,20 @@ function skipQuestion() {
   document.getElementById('feedback').className = 'feedback show';
   document.getElementById('validateBtn').style.display = 'none';
   document.getElementById('skipBtn').style.display = 'none';
+  const buttonGroup = document.getElementById('exerciseButtonGroup');
   const nextBtn = document.createElement('button');
   nextBtn.className = 'btn-primary';
+  nextBtn.id = 'nextVerbBtn';
   nextBtn.textContent = 'Verbe suivant';
   nextBtn.onclick = () => {
     currentVerbIndex++;
     displayQuestion();
   };
-  document.getElementById('feedback').parentNode.insertBefore(nextBtn, document.getElementById('feedback').nextSibling);
+  const existingNextBtn = document.getElementById('nextVerbBtn');
+  if (existingNextBtn) {
+    existingNextBtn.remove();
+  }
+  buttonGroup.appendChild(nextBtn);
 }
 
 function showScore() {
@@ -836,7 +904,6 @@ function showScore() {
 document.addEventListener('DOMContentLoaded', () => {
   initializeSelectedVerbs();
   updateVerbsInfo();
-  updateSelectedVerbsCount();
   populateVerbDropdowns();
   renderVerbsList();
   loadVerbs();
@@ -851,6 +918,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('scoreScreen').classList.remove('show');
     document.getElementById('exerciseSection').style.display = 'block';
   });
+
+  const startDropdown = document.getElementById('startVerbDropdown');
+  const endDropdown = document.getElementById('endVerbDropdown');
+  startDropdown.addEventListener('change', updateSelectedVerbsInRange);
+  endDropdown.addEventListener('change', updateSelectedVerbsInRange);
 
   const manageVerbsBtn = document.getElementById('manageVerbsBtn');
   const verbsEditorPanel = document.getElementById('verbsEditorPanel');
@@ -876,13 +948,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   selectAllBtn.addEventListener('click', () => {
     verbsSorted.forEach(v => selectedVerbs.add(v.base));
-    updateSelectedVerbsCount();
+    updateVerbsInfo();
     renderVerbsList();
   });
 
   deselectAllBtn.addEventListener('click', () => {
     selectedVerbs.clear();
-    updateSelectedVerbsCount();
+    updateVerbsInfo();
     renderVerbsList();
   });
 
@@ -917,6 +989,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     verbsEditorPanel.classList.remove('show');
     addVerbPanel.classList.remove('show');
+    populateVerbDropdowns();
     loadVerbs();
   });
 });
