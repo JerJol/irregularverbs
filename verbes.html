@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Verbes EN">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Révision Verbes Irréguliers</title>
+    <style>
+:root {
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-background: #1a1a1a;
+  --color-surface: #242424;
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #a0a0a0;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  padding: 20px;
+}
+
+.container { max-width: 900px; margin: 0 auto; }
+
+.card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border: 1px solid var(--color-border);
+}
+
+h1 { 
+  margin: 0 0 20px 0; 
+  color: var(--color-teal-300); 
+  font-size: 1.8rem;
+}
+
+h2 { 
+  margin: 0 0 15px 0; 
+  font-size: 1rem; 
+  color: var(--color-text-primary); 
+}
+
+h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-teal-300);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+select, input, textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-primary);
+  transition: border-color 0.2s;
+}
+
+select {
+  background-color: #333333;
+  color: #e0e0e0;
+}
+
+select option {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  padding: 3px;
+}
+
+select option:hover {
+  background-color: var(--color-teal-600);
+  color: white;
+}
+
+select option:checked {
+  background: linear-gradient(#206080, #206080);
+  background-color: var(--color-teal-500);
+  color: white;
+}
+
+select:focus, input:focus, textarea:focus {
+  border-color: var(--color-teal-500);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+input[type="number"] {
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  font-family: monospace;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--color-teal-500);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-teal-600);
+}
+
+.btn-secondary {
+  background: rgba(var(--color-slate-500-rgb), 0.2);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: rgba(var(--color-slate-500-rgb), 0.3);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.progress {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 10px;
+}
+
+.info-box {
+  background: rgba(50, 184, 198, 0.1);
+  border: 1px solid rgba(50, 184, 198, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: var(--color-teal-300);
+}
+
+.question {
+  background: linear-gradient(135deg, rgba(50, 184, 198, 0.15), rgba(230, 129, 97, 0.08));
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(var(--color-teal-500-rgb), 0.3);
+}
+
+.question-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-teal-300);
+}
+
+.forms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+  .forms-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.field-input input {
+  padding: 8px 10px;
+  font-size: 0.9rem;
+}
+
+.field-input input:disabled {
+  background: rgba(255, 255, 255, 0.03);
+  border-style: dashed;
+  cursor: not-allowed;
+  font-weight: 600;
+  color: var(--color-teal-300);
+}
+
+.feedback {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: none;
+  font-size: 0.9rem;
+}
+
+.feedback.show { display: block; }
+
+.feedback.success { 
+  background: rgba(34, 197, 94, 0.2); 
+  color: #4ade80; 
+  border: 1px solid rgba(34, 197, 94, 0.4); 
+}
+
+.feedback.error { 
+  background: rgba(var(--color-red-500), 0.2); 
+  color: #ff7070; 
+  border: 1px solid rgba(192, 21, 47, 0.4); 
+}
+
+.score-screen {
+  text-align: center;
+  padding: 40px 20px;
+  display: none;
+}
+
+.score-screen.show { display: block; }
+
+.score-value { 
+  font-size: 3rem; 
+  font-weight: 700; 
+  color: var(--color-teal-300); 
+}
+
+.score-message { 
+  font-size: 1.2rem; 
+  margin: 15px 0; 
+  color: var(--color-text-primary);
+}
+
+#verbsEditorPanel {
+  display: none;
+  margin-top: 15px;
+}
+
+#verbsEditorPanel.show {
+  display: block;
+}
+
+#addVerbPanel {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(50, 184, 198, 0.05);
+  border: 1px solid rgba(50, 184, 198, 0.2);
+  border-radius: 8px;
+}
+
+#addVerbPanel.show {
+  display: block;
+}
+
+.add-verb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+#verbsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  margin: 15px 0;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.verb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.2s;
+}
+
+.verb-item:hover {
+  background: rgba(50, 184, 198, 0.1);
+}
+
+.verb-item input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+  accent-color: var(--color-teal-500);
+}
+
+.verb-item label {
+  cursor: pointer;
+  margin: 0;
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.selection-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.config-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .config-grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .config-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Révision Verbes Irréguliers</h1>
+
+        <div class="card">
+            <h2>Configuration</h2>
+            <div class="config-grid-3">
+                <div class="form-group">
+                    <label class="form-label">Verbe de départ</label>
+                    <select id="startVerbDropdown"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Verbe de fin</label>
+                    <select id="endVerbDropdown"></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nombre de questions</label>
+                    <input type="number" id="numQuestionsInput" min="1" max="100" value="10">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="btn-primary" id="loadVerbsBtn">Charger les verbes</button>
+                <button class="btn-secondary" id="manageVerbsBtn">Gérer la liste</button>
+            </div>
+            
+            <div class="info-box" id="verbsInfo">
+                <strong>Verbes disponibles :</strong> <span id="totalVerbsCount">0</span><br>
+                <strong>Verbes sélectionnés dans la plage :</strong> <span id="selectedVerbsCount">0</span>
+            </div>
+
+            <div id="verbsEditorPanel" class="card">
+                <h2>Sélectionner les verbes</h2>
+                
+                <div class="selection-controls">
+                    <button class="btn-secondary btn-sm" id="selectAllBtn">Tout sélectionner</button>
+                    <button class="btn-secondary btn-sm" id="deselectAllBtn">Tout désélectionner</button>
+                    <button class="btn-secondary btn-sm" id="toggleAddVerbBtn">➕ Ajouter un verbe</button>
+                </div>
+
+                <div id="addVerbPanel">
+                    <h3 style="margin: 0 0 12px 0; font-size: 0.95rem; color: var(--color-teal-300);">Nouveau verbe</h3>
+                    <div class="add-verb-grid">
+                        <div class="form-group">
+                            <label class="form-label">Base (infinitif)</label>
+                            <input type="text" id="newVerbBase" placeholder="ex: go">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Prétérit</label>
+                            <input type="text" id="newVerbPreterit" placeholder="ex: went">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Participe passé</label>
+                            <input type="text" id="newVerbPastParticiple" placeholder="ex: gone">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Traduction</label>
+                            <input type="text" id="newVerbTranslation" placeholder="ex: aller">
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn-secondary btn-sm" id="cancelAddVerbBtn">Annuler</button>
+                        <button class="btn-primary btn-sm" id="addVerbBtn">Ajouter</button>
+                    </div>
+                </div>
+
+                <div id="verbsList"></div>
+
+                <div class="editor-actions">
+                    <button class="btn-secondary" id="cancelEditVerbsBtn">Annuler</button>
+                    <button class="btn-primary" id="saveVerbsBtn">Enregistrer la sélection</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="exerciseSection" class="card" style="display: none;">
+            <div class="progress" id="progressCounter"></div>
+            <div class="question">
+                <div class="question-text" id="questionText"></div>
+            </div>
+
+            <div class="forms-grid" id="formsGrid"></div>
+
+            <div id="feedback" class="feedback"></div>
+
+            <div class="button-group" id="exerciseButtonGroup">
+                <button class="btn-primary" id="validateBtn">Valider</button>
+                <button class="btn-secondary" id="skipBtn">Je ne sais pas</button>
+            </div>
+        </div>
+
+        <div id="scoreScreen" class="card score-screen">
+            <div style="font-size: 1.2rem; margin-bottom: 20px; color: var(--color-text-primary);">Score Final</div>
+            <div class="score-value" id="scoreValue"></div>
+            <div id="scorePercentage" style="font-size: 1.1rem; color: var(--color-text-secondary); margin: 10px 0;"></div>
+            <div class="score-message" id="scoreMessage"></div>
+            <button class="btn-primary" id="restartBtn" style="margin-top: 20px;">Recommencer</button>
+        </div>
+    </div>
+
+    <script>
+const verbsSorted = [
+  { base: "arise", preterit: "arose", past_participle: "arisen", translation: "surgir" },
+  { base: "awake", preterit: "awoke", past_participle: "awoken", translation: "réveiller" },
+  { base: "be", preterit: "was/were", past_participle: "been", translation: "être" },
+  { base: "beat", preterit: "beat", past_participle: "beaten", translation: "battre" },
+  { base: "begin", preterit: "began", past_participle: "begun", translation: "commencer" },
+  { base: "bite", preterit: "bit", past_participle: "bitten", translation: "mordre" },
+  { base: "blow", preterit: "blew", past_participle: "blown", translation: "souffler" },
+  { base: "break", preterit: "broke", past_participle: "broken", translation: "casser" },
+  { base: "bring", preterit: "brought", past_participle: "brought", translation: "apporter" },
+  { base: "build", preterit: "built", past_participle: "built", translation: "construire" },
+  { base: "buy", preterit: "bought", past_participle: "bought", translation: "acheter" },
+  { base: "catch", preterit: "caught", past_participle: "caught", translation: "attraper" },
+  { base: "choose", preterit: "chose", past_participle: "chosen", translation: "choisir" },
+  { base: "come", preterit: "came", past_participle: "come", translation: "venir" },
+  { base: "cost", preterit: "cost", past_participle: "cost", translation: "coûter" },
+  { base: "cut", preterit: "cut", past_participle: "cut", translation: "couper" },
+  { base: "do", preterit: "did", past_participle: "done", translation: "faire" },
+  { base: "draw", preterit: "drew", past_participle: "drawn", translation: "dessiner/tirer" },
+  { base: "drink", preterit: "drank", past_participle: "drunk", translation: "boire" },
+  { base: "drive", preterit: "drove", past_participle: "driven", translation: "conduire" },
+  { base: "eat", preterit: "ate", past_participle: "eaten", translation: "manger" },
+  { base: "fall", preterit: "fell", past_participle: "fallen", translation: "tomber" },
+  { base: "feel", preterit: "felt", past_participle: "felt", translation: "sentir/ressentir" },
+  { base: "find", preterit: "found", past_participle: "found", translation: "trouver" },
+  { base: "fly", preterit: "flew", past_participle: "flown", translation: "voler" },
+  { base: "forget", preterit: "forgot", past_participle: "forgotten", translation: "oublier" },
+  { base: "forgive", preterit: "forgave", past_participle: "forgiven", translation: "pardonner" },
+  { base: "get", preterit: "got", past_participle: "gotten", translation: "obtenir" },
+  { base: "give", preterit: "gave", past_participle: "given", translation: "donner" },
+  { base: "go", preterit: "went", past_participle: "gone", translation: "aller" },
+  { base: "grow", preterit: "grew", past_participle: "grown", translation: "grandir/cultiver" },
+  { base: "have", preterit: "had", past_participle: "had", translation: "avoir" },
+  { base: "hear", preterit: "heard", past_participle: "heard", translation: "entendre" },
+  { base: "hide", preterit: "hid", past_participle: "hidden", translation: "cacher" },
+  { base: "hit", preterit: "hit", past_participle: "hit", translation: "frapper" },
+  { base: "hold", preterit: "held", past_participle: "held", translation: "tenir" },
+  { base: "hurt", preterit: "hurt", past_participle: "hurt", translation: "blesser" },
+  { base: "keep", preterit: "kept", past_participle: "kept", translation: "garder" },
+  { base: "know", preterit: "knew", past_participle: "known", translation: "connaître/savoir" },
+  { base: "lay", preterit: "laid", past_participle: "laid", translation: "poser/mettre" },
+  { base: "learn", preterit: "learnt", past_participle: "learnt", translation: "apprendre" },
+  { base: "leave", preterit: "left", past_participle: "left", translation: "partir/laisser" },
+  { base: "lend", preterit: "lent", past_participle: "lent", translation: "prêter" },
+  { base: "let", preterit: "let", past_participle: "let", translation: "laisser/permettre" },
+  { base: "lie", preterit: "lay", past_participle: "lain", translation: "s'allonger" },
+  { base: "lose", preterit: "lost", past_participle: "lost", translation: "perdre" },
+  { base: "make", preterit: "made", past_participle: "made", translation: "faire/fabriquer" },
+  { base: "mean", preterit: "meant", past_participle: "meant", translation: "signifier" },
+  { base: "meet", preterit: "met", past_participle: "met", translation: "rencontrer" },
+  { base: "pay", preterit: "paid", past_participle: "paid", translation: "payer" },
+  { base: "put", preterit: "put", past_participle: "put", translation: "mettre" },
+  { base: "read", preterit: "read", past_participle: "read", translation: "lire" },
+  { base: "ride", preterit: "rode", past_participle: "ridden", translation: "chevaucher" },
+  { base: "ring", preterit: "rang", past_participle: "rung", translation: "sonner" },
+  { base: "rise", preterit: "rose", past_participle: "risen", translation: "se lever" },
+  { base: "run", preterit: "ran", past_participle: "run", translation: "courir" },
+  { base: "say", preterit: "said", past_participle: "said", translation: "dire" },
+  { base: "see", preterit: "saw", past_participle: "seen", translation: "voir" },
+  { base: "seek", preterit: "sought", past_participle: "sought", translation: "chercher" },
+  { base: "sell", preterit: "sold", past_participle: "sold", translation: "vendre" },
+  { base: "send", preterit: "sent", past_participle: "sent", translation: "envoyer" },
+  { base: "set", preterit: "set", past_participle: "set", translation: "mettre/positionner" },
+  { base: "shine", preterit: "shone", past_participle: "shone", translation: "briller" },
+  { base: "show", preterit: "showed", past_participle: "shown", translation: "montrer" },
+  { base: "sing", preterit: "sang", past_participle: "sung", translation: "chanter" },
+  { base: "sink", preterit: "sank", past_participle: "sunk", translation: "couler" },
+  { base: "sit", preterit: "sat", past_participle: "sat", translation: "s'asseoir" },
+  { base: "sleep", preterit: "slept", past_participle: "slept", translation: "dormir" },
+  { base: "speak", preterit: "spoke", past_participle: "spoken", translation: "parler" },
+  { base: "spend", preterit: "spent", past_participle: "spent", translation: "dépenser" },
+  { base: "stand", preterit: "stood", past_participle: "stood", translation: "se tenir debout" },
+  { base: "steal", preterit: "stole", past_participle: "stolen", translation: "voler" },
+  { base: "swim", preterit: "swam", past_participle: "swum", translation: "nager" },
+  { base: "take", preterit: "took", past_participle: "taken", translation: "prendre" },
+  { base: "teach", preterit: "taught", past_participle: "taught", translation: "enseigner" },
+  { base: "tell", preterit: "told", past_participle: "told", translation: "raconter" },
+  { base: "think", preterit: "thought", past_participle: "thought", translation: "penser" },
+  { base: "throw", preterit: "threw", past_participle: "thrown", translation: "lancer" },
+  { base: "understand", preterit: "understood", past_participle: "understood", translation: "comprendre" },
+  { base: "wake", preterit: "woke", past_participle: "woken", translation: "se réveiller" },
+  { base: "wear", preterit: "wore", past_participle: "worn", translation: "porter" },
+  { base: "win", preterit: "won", past_participle: "won", translation: "gagner" },
+  { base: "write", preterit: "wrote", past_participle: "written", translation: "écrire" }
+];
+
+let selectedVerbs = new Set();
+let currentVerbs = [];
+let currentVerbIndex = 0;
+let score = 0;
+
+function initializeSelectedVerbs() {
+  const startIdx = verbsSorted.findIndex(v => v.base === 'have');
+  const endIdx = verbsSorted.findIndex(v => v.base === 'put');
+  for (let i = startIdx; i <= endIdx; i++) {
+    selectedVerbs.add(verbsSorted[i].base);
+  }
+}
+
+function updateVerbsInfo() {
+  document.getElementById('totalVerbsCount').textContent = verbsSorted.length;
+  updateSelectedVerbsInRange();
+}
+
+function updateSelectedVerbsInRange() {
+  const startVerbValue = document.getElementById('startVerbDropdown').value;
+  const endVerbValue = document.getElementById('endVerbDropdown').value;
+  
+  if (!startVerbValue || !endVerbValue) {
+    document.getElementById('selectedVerbsCount').textContent = '0';
+    return;
+  }
+
+  const startIdx = verbsSorted.findIndex(v => v.base === startVerbValue);
+  const endIdx = verbsSorted.findIndex(v => v.base === endVerbValue);
+  
+  if (startIdx === -1 || endIdx === -1) {
+    document.getElementById('selectedVerbsCount').textContent = '0';
+    return;
+  }
+
+  const minIdx = Math.min(startIdx, endIdx);
+  const maxIdx = Math.max(startIdx, endIdx);
+  
+  let count = 0;
+  for (let i = minIdx; i <= maxIdx; i++) {
+    if (selectedVerbs.has(verbsSorted[i].base)) {
+      count++;
+    }
+  }
+  
+  document.getElementById('selectedVerbsCount').textContent = count;
+}
+
+function renderVerbsList() {
+  const verbsList = document.getElementById('verbsList');
+  verbsList.innerHTML = '';
+  verbsSorted.forEach(verb => {
+    const div = document.createElement('div');
+    div.className = 'verb-item';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `verb-${verb.base}`;
+    checkbox.checked = selectedVerbs.has(verb.base);
+    checkbox.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        selectedVerbs.add(verb.base);
+      } else {
+        selectedVerbs.delete(verb.base);
+      }
+      updateSelectedVerbsInRange();
+    });
+    const label = document.createElement('label');
+    label.htmlFor = `verb-${verb.base}`;
+    label.textContent = `${verb.base} (${verb.translation})`;
+    div.appendChild(checkbox);
+    div.appendChild(label);
+    verbsList.appendChild(div);
+  });
+}
+
+function populateVerbDropdowns() {
+  const startDropdown = document.getElementById('startVerbDropdown');
+  const endDropdown = document.getElementById('endVerbDropdown');
+  startDropdown.innerHTML = '';
+  endDropdown.innerHTML = '';
+  
+  const selectedVerbsList = Array.from(selectedVerbs)
+    .map(base => verbsSorted.find(v => v.base === base))
+    .filter(v => v !== undefined)
+    .sort((a, b) => a.base.localeCompare(b.base));
+
+  selectedVerbsList.forEach(v => {
+    const opt1 = document.createElement('option');
+    opt1.value = v.base;
+    opt1.textContent = `${v.base} (${v.translation})`;
+    startDropdown.appendChild(opt1);
+
+    const opt2 = document.createElement('option');
+    opt2.value = v.base;
+    opt2.textContent = `${v.base} (${v.translation})`;
+    endDropdown.appendChild(opt2);
+  });
+
+  if (selectedVerbsList.length > 0) {
+    startDropdown.value = selectedVerbsList[0].base;
+    endDropdown.value = selectedVerbsList[selectedVerbsList.length - 1].base;
+  }
+  
+  updateSelectedVerbsInRange();
+}
+
+function clearAddVerbForm() {
+  document.getElementById('newVerbBase').value = '';
+  document.getElementById('newVerbPreterit').value = '';
+  document.getElementById('newVerbPastParticiple').value = '';
+  document.getElementById('newVerbTranslation').value = '';
+}
+
+function addNewVerb() {
+  const base = document.getElementById('newVerbBase').value.trim().toLowerCase();
+  const preterit = document.getElementById('newVerbPreterit').value.trim();
+  const pastParticiple = document.getElementById('newVerbPastParticiple').value.trim();
+  const translation = document.getElementById('newVerbTranslation').value.trim();
+  if (!base || !preterit || !pastParticiple || !translation) {
+    alert('Remplissez tous les champs');
+    return;
+  }
+  if (verbsSorted.find(v => v.base === base)) {
+    alert('Ce verbe existe déjà');
+    return;
+  }
+  const newVerb = { base, preterit, past_participle: pastParticiple, translation };
+  verbsSorted.push(newVerb);
+  verbsSorted.sort((a, b) => a.base.localeCompare(b.base));
+  selectedVerbs.add(base);
+  updateVerbsInfo();
+  populateVerbDropdowns();
+  renderVerbsList();
+  clearAddVerbForm();
+  document.getElementById('addVerbPanel').classList.remove('show');
+  alert('Verbe ajouté avec succès!');
+}
+
+function loadVerbs() {
+  const startVerbValue = document.getElementById('startVerbDropdown').value;
+  const endVerbValue = document.getElementById('endVerbDropdown').value;
+  const numQuestions = parseInt(document.getElementById('numQuestionsInput').value);
+
+  const startIdx = verbsSorted.findIndex(v => v.base === startVerbValue);
+  const endIdx = verbsSorted.findIndex(v => v.base === endVerbValue);
+
+  if (startIdx === -1 || endIdx === -1) {
+    alert('Verbes de départ ou de fin non valides');
+    return;
+  }
+
+  let rangeVerbs = [];
+  const minIdx = Math.min(startIdx, endIdx);
+  const maxIdx = Math.max(startIdx, endIdx);
+  
+  for (let i = minIdx; i <= maxIdx; i++) {
+    if (selectedVerbs.has(verbsSorted[i].base)) {
+      rangeVerbs.push(verbsSorted[i]);
+    }
+  }
+
+  if (rangeVerbs.length === 0) {
+    alert('Aucun verbe sélectionné dans cette plage');
+    return;
+  }
+
+  if (numQuestions > rangeVerbs.length) {
+    currentVerbs = rangeVerbs;
+  } else if (numQuestions < rangeVerbs.length) {
+    currentVerbs = rangeVerbs.sort(() => Math.random() - 0.5).slice(0, numQuestions);
+  } else {
+    currentVerbs = rangeVerbs;
+  }
+
+  document.getElementById('exerciseSection').style.display = 'block';
+  document.getElementById('scoreScreen').classList.remove('show');
+  currentVerbIndex = 0;
+  score = 0;
+  displayQuestion();
+}
+
+function displayQuestion() {
+  if (currentVerbIndex >= currentVerbs.length) {
+    showScore();
+    return;
+  }
+  const verb = currentVerbs[currentVerbIndex];
+  const questionType = Math.floor(Math.random() * 4);
+  let givenField, question;
+  if (questionType === 0) {
+    givenField = 'base';
+    question = verb.base;
+  } else if (questionType === 1) {
+    givenField = 'preterit';
+    question = verb.preterit;
+  } else if (questionType === 2) {
+    givenField = 'past_participle';
+    question = verb.past_participle;
+  } else {
+    givenField = 'translation';
+    question = verb.translation;
+  }
+  document.getElementById('questionText').textContent = question;
+  document.getElementById('progressCounter').textContent = `${currentVerbIndex + 1}/${currentVerbs.length}`;
+  const formsGrid = document.getElementById('formsGrid');
+  formsGrid.innerHTML = '';
+  const fields = ['base', 'preterit', 'past_participle', 'translation'];
+  const labels = ['Base', 'Prétérit', 'Participe passé', 'Traduction'];
+  fields.forEach((field, idx) => {
+    const fieldDiv = document.createElement('div');
+    fieldDiv.className = 'field-input';
+    const label = document.createElement('div');
+    label.className = 'field-label';
+    label.textContent = labels[idx];
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'form-input';
+    input.id = `field-${field}`;
+    if (field === givenField) {
+      let displayValue = verb[field];
+      input.value = displayValue;
+      input.disabled = true;
+      input.style.fontWeight = '600';
+    } else {
+      input.value = '';
+      input.placeholder = labels[idx];
+    }
+    fieldDiv.appendChild(label);
+    fieldDiv.appendChild(input);
+    formsGrid.appendChild(fieldDiv);
+  });
+  document.getElementById('feedback').classList.remove('show');
+  document.getElementById('validateBtn').style.display = 'inline-block';
+  document.getElementById('skipBtn').style.display = 'inline-block';
+}
+
+function normalizeString(str) {
+  return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+}
+
+function validateAnswer() {
+  const verb = currentVerbs[currentVerbIndex];
+  const feedback = document.getElementById('feedback');
+  const base = normalizeString(document.getElementById('field-base').value);
+  const preterit = normalizeString(document.getElementById('field-preterit').value);
+  const pastParticiple = normalizeString(document.getElementById('field-past_participle').value);
+  const translation = normalizeString(document.getElementById('field-translation').value);
+  const expectedBase = normalizeString(verb.base);
+  const expectedPreterit = normalizeString(verb.preterit);
+  const expectedPastParticiple = normalizeString(verb.past_participle);
+  const expectedTranslation = normalizeString(verb.translation);
+  const isCorrect = base === expectedBase && preterit === expectedPreterit && pastParticiple === expectedPastParticiple && translation === expectedTranslation;
+  if (isCorrect) {
+    feedback.textContent = '✓ Correct';
+    feedback.className = 'feedback show success';
+    score++;
+  } else {
+    feedback.textContent = '✗ Incorrect';
+    feedback.className = 'feedback show error';
+    displayCorrection();
+  }
+  document.getElementById('validateBtn').style.display = 'none';
+  document.getElementById('skipBtn').style.display = 'none';
+  const buttonGroup = document.getElementById('exerciseButtonGroup');
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn-primary';
+  nextBtn.id = 'nextVerbBtn';
+  nextBtn.textContent = 'Verbe suivant';
+  nextBtn.onclick = () => {
+    currentVerbIndex++;
+    displayQuestion();
+  };
+  const existingNextBtn = document.getElementById('nextVerbBtn');
+  if (existingNextBtn) {
+    existingNextBtn.remove();
+  }
+  buttonGroup.appendChild(nextBtn);
+}
+
+function displayCorrection() {
+  const verb = currentVerbs[currentVerbIndex];
+  document.getElementById('field-base').value = verb.base;
+  document.getElementById('field-preterit').value = verb.preterit;
+  document.getElementById('field-past_participle').value = verb.past_participle;
+  document.getElementById('field-translation').value = verb.translation;
+  document.getElementById('field-base').disabled = true;
+  document.getElementById('field-preterit').disabled = true;
+  document.getElementById('field-past_participle').disabled = true;
+  document.getElementById('field-translation').disabled = true;
+  document.getElementById('field-base').style.background = 'rgba(50, 184, 198, 0.1)';
+  document.getElementById('field-preterit').style.background = 'rgba(50, 184, 198, 0.1)';
+  document.getElementById('field-past_participle').style.background = 'rgba(50, 184, 198, 0.1)';
+  document.getElementById('field-translation').style.background = 'rgba(50, 184, 198, 0.1)';
+}
+
+function skipQuestion() {
+  displayCorrection();
+  document.getElementById('feedback').textContent = 'Réponse proposée';
+  document.getElementById('feedback').className = 'feedback show';
+  document.getElementById('validateBtn').style.display = 'none';
+  document.getElementById('skipBtn').style.display = 'none';
+  const buttonGroup = document.getElementById('exerciseButtonGroup');
+  const nextBtn = document.createElement('button');
+  nextBtn.className = 'btn-primary';
+  nextBtn.id = 'nextVerbBtn';
+  nextBtn.textContent = 'Verbe suivant';
+  nextBtn.onclick = () => {
+    currentVerbIndex++;
+    displayQuestion();
+  };
+  const existingNextBtn = document.getElementById('nextVerbBtn');
+  if (existingNextBtn) {
+    existingNextBtn.remove();
+  }
+  buttonGroup.appendChild(nextBtn);
+}
+
+function showScore() {
+  document.getElementById('exerciseSection').style.display = 'none';
+  const scoreScreen = document.getElementById('scoreScreen');
+  scoreScreen.classList.add('show');
+  document.getElementById('scoreValue').textContent = `${score}/${currentVerbs.length}`;
+  const percentage = Math.round((score / currentVerbs.length) * 100);
+  document.getElementById('scorePercentage').textContent = `${percentage}%`;
+  let message = '';
+  if (score === currentVerbs.length) message = '🌟 Excellent!';
+  else if (score >= currentVerbs.length * 0.7) message = '👍 Très bien!';
+  else if (score >= currentVerbs.length * 0.5) message = '💪 Pas mal!';
+  else message = '📚 À revoir!';
+  document.getElementById('scoreMessage').textContent = message;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initializeSelectedVerbs();
+  updateVerbsInfo();
+  populateVerbDropdowns();
+  renderVerbsList();
+  loadVerbs();
+
+  document.getElementById('loadVerbsBtn').addEventListener('click', loadVerbs);
+  document.getElementById('validateBtn').addEventListener('click', validateAnswer);
+  document.getElementById('skipBtn').addEventListener('click', skipQuestion);
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    currentVerbIndex = 0;
+    score = 0;
+    displayQuestion();
+    document.getElementById('scoreScreen').classList.remove('show');
+    document.getElementById('exerciseSection').style.display = 'block';
+  });
+
+  const startDropdown = document.getElementById('startVerbDropdown');
+  const endDropdown = document.getElementById('endVerbDropdown');
+  startDropdown.addEventListener('change', updateSelectedVerbsInRange);
+  endDropdown.addEventListener('change', updateSelectedVerbsInRange);
+
+  const manageVerbsBtn = document.getElementById('manageVerbsBtn');
+  const verbsEditorPanel = document.getElementById('verbsEditorPanel');
+  const addVerbPanel = document.getElementById('addVerbPanel');
+  const saveVerbsBtn = document.getElementById('saveVerbsBtn');
+  const cancelEditVerbsBtn = document.getElementById('cancelEditVerbsBtn');
+  const selectAllBtn = document.getElementById('selectAllBtn');
+  const deselectAllBtn = document.getElementById('deselectAllBtn');
+  const toggleAddVerbBtn = document.getElementById('toggleAddVerbBtn');
+  const addVerbBtn = document.getElementById('addVerbBtn');
+  const cancelAddVerbBtn = document.getElementById('cancelAddVerbBtn');
+
+  manageVerbsBtn.addEventListener('click', () => {
+    renderVerbsList();
+    verbsEditorPanel.classList.add('show');
+  });
+
+  cancelEditVerbsBtn.addEventListener('click', () => {
+    verbsEditorPanel.classList.remove('show');
+    addVerbPanel.classList.remove('show');
+    clearAddVerbForm();
+  });
+
+  selectAllBtn.addEventListener('click', () => {
+    verbsSorted.forEach(v => selectedVerbs.add(v.base));
+    updateVerbsInfo();
+    renderVerbsList();
+  });
+
+  deselectAllBtn.addEventListener('click', () => {
+    selectedVerbs.clear();
+    updateVerbsInfo();
+    renderVerbsList();
+  });
+
+  toggleAddVerbBtn.addEventListener('click', () => {
+    addVerbPanel.classList.toggle('show');
+  });
+
+  cancelAddVerbBtn.addEventListener('click', () => {
+    addVerbPanel.classList.remove('show');
+    clearAddVerbForm();
+  });
+
+  addVerbBtn.addEventListener('click', addNewVerb);
+
+  document.getElementById('newVerbBase').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addNewVerb();
+  });
+  document.getElementById('newVerbPreterit').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addNewVerb();
+  });
+  document.getElementById('newVerbPastParticiple').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addNewVerb();
+  });
+  document.getElementById('newVerbTranslation').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addNewVerb();
+  });
+
+  saveVerbsBtn.addEventListener('click', () => {
+    if (selectedVerbs.size === 0) {
+      alert('Sélectionnez au moins un verbe');
+      return;
+    }
+    verbsEditorPanel.classList.remove('show');
+    addVerbPanel.classList.remove('show');
+    populateVerbDropdowns();
+    loadVerbs();
+  });
+});
+    </script>
+</body>
+</html>
