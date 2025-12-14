@@ -678,22 +678,25 @@ input[type="checkbox"] {
             { base: "pay", preterit: "paid", past_participle: "paid", translation: "payer" },
             { base: "put", preterit: "put", past_participle: "put", translation: "mettre" },
             { base: "read", preterit: "read", past_participle: "read", translation: "lire" },
+            { base: "rent", preterit: "rent", past_participle: "rent", translation: "louer" },
             { base: "ride", preterit: "rode", past_participle: "ridden", translation: "chevaucher" },
             { base: "ring", preterit: "rang", past_participle: "rung", translation: "sonner" },
             { base: "rise", preterit: "rose", past_participle: "risen", translation: "se lever" },
             { base: "run", preterit: "ran", past_participle: "run", translation: "courir" },
             { base: "say", preterit: "said", past_participle: "said", translation: "dire" },
             { base: "see", preterit: "saw", past_participle: "seen", translation: "voir" },
-            { base: "seek", preterit: "sought", past_participle: "sought", translation: "chercher" },
             { base: "sell", preterit: "sold", past_participle: "sold", translation: "vendre" },
             { base: "send", preterit: "sent", past_participle: "sent", translation: "envoyer" },
             { base: "set", preterit: "set", past_participle: "set", translation: "mettre/positionner" },
             { base: "shine", preterit: "shone", past_participle: "shone", translation: "briller" },
+            { base: "shake", preterit: "shook", past_participle: "shaken", translation: "secouer" },
+            { base: "shoot", preterit: "shot", past_participle: "shot", translation: "tirer" },
             { base: "show", preterit: "showed", past_participle: "shown", translation: "montrer" },
+            { base: "shut", preterit: "shut", past_participle: "shut", translation: "fermer" },
             { base: "sing", preterit: "sang", past_participle: "sung", translation: "chanter" },
-            { base: "sink", preterit: "sank", past_participle: "sunk", translation: "couler" },
-            { base: "sit", preterit: "sat", past_participle: "sat", translation: "s'asseoir" },
+             { base: "sit", preterit: "sat", past_participle: "sat", translation: "s'asseoir" },
             { base: "sleep", preterit: "slept", past_participle: "slept", translation: "dormir" },
+            { base: "smell", preterit: "smelt", past_participle: "smelt", translation: "sentir" },
             { base: "speak", preterit: "spoke", past_participle: "spoken", translation: "parler" },
             { base: "spend", preterit: "spent", past_participle: "spent", translation: "dépenser" },
             { base: "stand", preterit: "stood", past_participle: "stood", translation: "se tenir debout" },
@@ -789,6 +792,7 @@ input[type="checkbox"] {
             ],
             R: [
                 { base: "read", preterit: "read", past_participle: "read", translation: "lire" },
+                { base: "rent", preterit: "rent", past_participle: "rent", translation: "louer" },
                 { base: "ride", preterit: "rode", past_participle: "ridden", translation: "chevaucher" },
                 { base: "ring", preterit: "rang", past_participle: "rung", translation: "sonner" },
                 { base: "rise", preterit: "rose", past_participle: "risen", translation: "se lever" },
@@ -797,16 +801,18 @@ input[type="checkbox"] {
             S: [
                 { base: "say", preterit: "said", past_participle: "said", translation: "dire" },
                 { base: "see", preterit: "saw", past_participle: "seen", translation: "voir" },
-                { base: "seek", preterit: "sought", past_participle: "sought", translation: "chercher" },
                 { base: "sell", preterit: "sold", past_participle: "sold", translation: "vendre" },
                 { base: "send", preterit: "sent", past_participle: "sent", translation: "envoyer" },
                 { base: "set", preterit: "set", past_participle: "set", translation: "mettre/positionner" },
+                { base: "shake", preterit: "shook", past_participle: "shaken", translation: "secouer" },
                 { base: "shine", preterit: "shone", past_participle: "shone", translation: "briller" },
+                { base: "shoot", preterit: "shot", past_participle: "shot", translation: "tirer" },
                 { base: "show", preterit: "showed", past_participle: "shown", translation: "montrer" },
+                { base: "shut", preterit: "shut", past_participle: "shut", translation: "fermer" },
                 { base: "sing", preterit: "sang", past_participle: "sung", translation: "chanter" },
-                { base: "sink", preterit: "sank", past_participle: "sunk", translation: "couler" },
                 { base: "sit", preterit: "sat", past_participle: "sat", translation: "s'asseoir" },
                 { base: "sleep", preterit: "slept", past_participle: "slept", translation: "dormir" },
+                { base: "smell", preterit: "smelt", past_participle: "smelt", translation: "sentir" },
                 { base: "speak", preterit: "spoke", past_participle: "spoken", translation: "parler" },
                 { base: "spend", preterit: "spent", past_participle: "spent", translation: "dépenser" },
                 { base: "stand", preterit: "stood", past_participle: "stood", translation: "se tenir debout" },
@@ -883,8 +889,8 @@ input[type="checkbox"] {
         // Fonction pour initialiser la sélection par défaut (have to put)
         function initializeDefaultSelection() {
             selectedVerbsSet.clear();
-            const startIdx = allVerbs.findIndex(v => v.base === 'have');
-            const endIdx = allVerbs.findIndex(v => v.base === 'put');
+            const startIdx = allVerbs.findIndex(v => v.base === 'read');
+            const endIdx = allVerbs.findIndex(v => v.base === 'smell');
             if (startIdx !== -1 && endIdx !== -1) {
                 for (let i = startIdx; i <= endIdx; i++) {
                     selectedVerbsSet.add(allVerbs[i].base);
